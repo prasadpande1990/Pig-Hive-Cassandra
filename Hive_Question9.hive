@@ -1,0 +1,13 @@
+CREATE DATABASE yelpData;
+
+USE yelpData;
+
+CREATE TABLE business (review_id string,review_text string,business_id string,full_address string,schools string,longitude float,average_stars string,date_ string,user_id  string,open boolean,categories string,photo_url string,city string,review_count int,name string,neighborhoods string,url string,votes_cool string,votes_funny string,state string,stars float,latitude float,type string,votes_useful string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '^';
+
+LOAD DATA LOCAL INPATH '/home/prasad/Desktop/BigData/psp150030_HW2/business2.csv' INTO TABLE business;
+
+ADD JAR /home/prasad/Desktop/BigData/psp150030_HW2/Hive_Question9/Hive_Question9.jar;
+CREATE TEMPORARY FUNCTION FORMAT_CAT as 'yelp.Format_Cat';
+DESCRIBE FUNCTION FORMAT_CAT;
+SELECT FORMAT_CAT(categories) FROM business LIMIT 10;
+

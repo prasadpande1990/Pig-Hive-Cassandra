@@ -1,0 +1,29 @@
+CREATE DATABASE yelpData;
+
+USE yelpData;
+
+CREATE TABLE business_partition (review_id string,review_text string,business_id string,full_address string,schools string,longitude float,average_stars string,date_ string,user_id  string,open boolean,categories string,photo_url string,city string,review_count int,name string,neighborhoods string,url string,votes_cool string,votes_funny string,state string,stars float,latitude float,type string,votes_useful string) PARTITIONED BY (year int) ROW FORMAT DELIMITED FIELDS TERMINATED BY '^';
+
+
+LOAD DATA LOCAL INPATH '/home/prasad/Desktop/BigData/psp150030_HW2/data/business2013.csv' INTO TABLE business_partition PARTITION (year=2013);
+
+LOAD DATA LOCAL INPATH '/home/prasad/Desktop/BigData/psp150030_HW2/data/business2014.csv' INTO TABLE business_partition PARTITION (year=2014);
+
+LOAD DATA LOCAL INPATH '/home/prasad/Desktop/BigData/psp150030_HW2/data/business2015.csv' INTO TABLE business_partition PARTITION (year=2015);
+
+CREATE TABLE business_2013 (business_id string,full_address string, longitude float);
+
+CREATE TABLE business_2014 (business_id string,full_address string, longitude float);
+
+CREATE TABLE business_2015 (business_id string,full_address string, longitude float);
+
+FROM business_partition part
+INSERT OVERWRITE TABLE business_2013 SELECT part.business_id, part.full_address, part.longitude WHERE year=2013
+INSERT OVERWRITE TABLE business_2014 SELECT part.business_id, part.full_address, part.longitude WHERE year=2014
+INSERT OVERWRITE TABLE business_2015 SELECT part.business_id, part.full_address, part.longitude WHERE year=2015;
+
+
+SELECT * FROM business_2013 LIMIT 10;
+SELECT * FROM business_2014 LIMIT 10;
+SELECT * FROM business_2015 LIMIT 10;
+

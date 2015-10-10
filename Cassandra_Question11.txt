@@ -1,0 +1,288 @@
+USE yelpData;
+
+CREATE TABLE yelpData.business ( review_id varchar, review_text text, business_id text, full_address text, schools text, longitude float, average_stars text, date text, user_id  text, open boolean, categories text, photo_url text, city text, review_count int, name text, neighborhoods text, url text,votes_cool text, votes_funny text, state text, stars float, latitude float, type text, votes_useful text, PRIMARY KEY (business_id) );
+
+COPY business(review_id,review_text,business_id,full_address,schools,longitude,average_stars,date,user_id,open,categories,photo_url,city,review_count,name, neighborhoods,url,votes_cool,votes_funny,state,stars,latitude,type,votes_useful) from '/home/prasad/Desktop/BigData/psp150030_HW2/business2.csv' WITH DELIMITER = '^';
+
+
+
+
+bin/nodetool -h 127.0.0.1 -p 7199 ring yelpdata
+
+
+-- Output of the Ring Command
+
+prasad@PrasadPande:~/temp/apache-cassandra-2.1.8$ bin/nodetool -h 127.0.0.1 -p 7199 ring yelpdata
+
+Datacenter: datacenter1
+==========
+Address    Rack        Status State   Load            Owns                Token                                       
+                                                                          9126299149257015795                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -9196639192158848227                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -9090415857518720507                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -9032918071355880967                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8979772483266893450                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8973775267840532123                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8855556005513276660                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8790631983986221646                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8748868905562327844                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8734544471098928418                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8727953757797810566                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8710831378948557179                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8670915417992061440                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8662433212126336917                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8435631555838343199                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8422891510710794557                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8419881148621766533                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8154097996091672945                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8124552452482077801                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8112226609655908609                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8105478804246758176                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -8104351404903653704                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7844093781447844286                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7767365638622795130                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7602933727785346409                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7489899757615440969                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7416929442626265319                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7358249904831963909                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7354992669528478776                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7313635491416113758                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7217400981087322386                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7167492552781289069                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7152951577542390000                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -7105246086972598422                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6998683451727202261                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6775002097407410796                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6715475751862751889                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6503454386257253971                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6397609978703138859                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6341098257934693131                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6321026959937003054                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6251182937535493547                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6212041214409206031                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6175143803961061652                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6172819730272259075                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6172501671560578029                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6151068926387344545                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -6051894192264471702                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5898062450970664017                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5790440959909974754                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5598538782897215288                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5552173196397599157                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5434861297242224104                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5279703280208249218                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5266288309433807715                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5264069185787281605                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5186816401456488114                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5185756954534671969                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5166025998044310451                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5115758782479762204                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -5013625646516786657                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4994348158245368923                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4936028939380385459                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4895093063947039045                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4883768658516121450                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4841226222305003500                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4837719796524937956                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4752180494776810137                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4510591846218021270                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4464474244916086373                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4431808619170498644                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4267704792216750451                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4257368436688669044                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4179778767182559056                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4168243327752559195                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4160028125287935408                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4152886456122338422                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -4139546216301975008                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3921437473153506159                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3856320508498578042                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3789573767067150750                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3731110841344572301                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3717764012555707014                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3708359924723018408                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3585476097946715419                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3527318521390528844                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3503794843322288434                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3480207950848344966                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3396292179774328984                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3360083073498596307                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3355695577414418222                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -3304439929113816476                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2918575781941414558                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2910584694478369229                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2811862570501376291                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2743594680913217360                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2714105478668623943                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2687767260643592071                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2608084822846803707                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2381424899292582244                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2325606546076819057                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2324400433899732927                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2252207958635116283                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2243564288288071590                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2237096516187522087                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2098829611370993170                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -2085948620982414682                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1963356060341963084                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1814646292130702991                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1758854839854781084                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1704388866110042841                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1515322883712253305                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1446311842730952373                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1368591384203385867                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1260784164318898043                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1213198120837656615                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1191670286581230115                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1181972583652701939                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -1177782515147541031                        
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -641003265765293221                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -447502520542137551                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -335076771473983725                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -331948024564312585                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -283399586896420379                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -225999340781213115                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -180728049920006627                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             -14037131836936171                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             9679700244744215                            
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             56411497691718501                           
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             285449379092461298                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             493193604043683429                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             537757498156844558                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             566385703207944143                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             660629333929537867                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             663962803103308663                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             973077030146897000                          
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1038480163825821046                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1197013500537640685                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1240587020365246811                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1254096352761060742                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1317237172880544991                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1337573872113509920                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1339813027511928872                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1470421607547004427                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1537163400339094364                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1551069909005294169                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1587455639399895668                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1658486107557617311                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1686214884157117810                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1689907615982747948                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1751821638479344189                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1768898010960076644                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1800503350412229806                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1876814421656296008                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1932199460746211857                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             1984635515213488054                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2031433190809258717                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2069153061891074809                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2167814360627877369                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2248601904403899557                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2426515765952825874                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2478569657178654305                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2769341864327617100                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2920463898986058466                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2957332292070162585                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             2975919420880774650                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3011950505766008328                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3119792362678936569                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3122313067740181589                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3246728284820638812                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3268329369711117780                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3328393366394783550                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3341200905414189822                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3345242316304637851                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3368795881342815358                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3379898435870841065                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3392311607145700288                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3438501005675525148                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3483446363229146042                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3522827115133992672                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3591784035266436228                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3922580463880446254                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3946696643985239201                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             3951425366300690128                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             4078823481330911937                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             4565592397227827767                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             4626963391414415850                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             4691441119524583646                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             4791027728025565799                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5248961855458703819                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5284441115323009536                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5413383774406116425                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5414596675842977186                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5548589377308413643                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5766926670185329794                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5769757162471638414                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5791296180856443580                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5793720671143744131                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5809557968185659074                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             5908897229927234719                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6291621222035059191                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6383532364051938008                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6396327236041858836                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6520621010220076392                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6559472043950264800                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6603753824603863519                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6639145853771346667                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6645449953968577284                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6864127488737661582                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6939601857359296145                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             6954028088329936657                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7006818819554503876                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7006852881431835545                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7033837877321146167                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7138795152536589443                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7139455594323539109                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7236160840139383280                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7336865673164449358                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7351170621979843903                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7357957970807892172                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7401777443320721876                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7409862381841494901                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7415652380889849111                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7570738958715707452                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7591619512090614098                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7626790345794951662                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7688814460767041890                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7743019561912369572                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7745941974222432245                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7811132746509789349                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7869336555075061455                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             7977926277328793848                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8001482437794414462                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8037151043542533888                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8053943323974977486                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8061536050523898901                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8092018640914695960                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8133339510451820734                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8169153038167293032                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8194817718751177916                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8249096335164380004                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8257142561778221437                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8305868311019008836                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8471498418248510915                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8500633629233039068                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8511944759243609537                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8518504569277485276                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8796292622856663585                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8809665451216633492                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8817375312722870491                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8887144877797152690                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8941479164848920146                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             8951344856212118815                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             9067011593479555981                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             9114619652575493324                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             9122814757138340941                         
+127.0.0.1  rack1       Up     Normal  116.74 KB       100.00%             9126299149257015795                         
+
+  Warning: "nodetool ring" is used to output all the tokens of a node.
+  To view status related info of a node use "nodetool status" instead.
+
+Explaination:
+
+To determine of the Cassandra cluster is unbalanced or not. notetool ring option is used and the column Owns is observed for the values.
+Nodetool ring displays node status and information about the ring as determined by the node being queried. Therefore, it is used to determine the load balance and if any nodes are down.
+
+Owns column in the ring output determines the percentage of the ring (keyspace) handled by the node. If the cluster is balanced then the keyspace will be evenly distributed among all the tokens and in case of unbalnce cluster rings will be uneven which is the indiacation that we need to balance the cluster using the nodetool move command.
+
+In my case I am getting owns output as 100% since here I am using a sudo node cluster so the whole keyspace is using a single node  clsuter so there is not any issue of the load unbalancing.
